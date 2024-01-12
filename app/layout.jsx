@@ -1,6 +1,6 @@
 import "@/styles/globals.css";
 
-export const metadat = {
+export const metadata = {
   title: "AI Prompts",
   description: "Discover & Share AI prompts",
 };
