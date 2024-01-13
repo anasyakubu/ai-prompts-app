@@ -6,13 +6,14 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 import Logo from "../public/assets/images/logo.svg";
+import Profile from "../public/assets/images/user-1.jpg";
 import { set } from "mongoose";
 import Provider from "./Provider";
 
 const Nav = () => {
   const isUserLoggedIn = true;
   const [providers, setProviders] = useState(null);
-  const [toggleDropdown, settoggleDropdow] = useState(false);
+  const [toggleDropdown, setToggleDropdown] = useState(false);
 
   useEffect(() => {
     const setProviders = async () => {
@@ -47,7 +48,7 @@ const Nav = () => {
             </button>
             <Link href="/profile">
               <Image
-                src={Logo}
+                src={Profile}
                 width={37}
                 height={37}
                 className="rounded-full"
@@ -81,8 +82,19 @@ const Nav = () => {
               height={37}
               className="rounded-full"
               alt="Profile"
-              onClick={() => {}}
+              onClick={() => setToggleDropdown((prev) => !prev)}
             />
+            {toggleDropdown && (
+              <div className="dropdown">
+                <Link
+                  href="/profile"
+                  className="dropdown_link"
+                  onClick={() => setToggleDropdown}
+                >
+                  My Profile
+                </Link>
+              </div>
+            )}
           </div>
         ) : (
           <>
