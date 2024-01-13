@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
-import Logo from "../public/assets/images/logo.svg";
+import Logo from "../public/assets/images/ai-logo.svg";
 import Profile from "../public/assets/images/user-1.jpg";
 import { set } from "mongoose";
 import Provider from "./Provider";
@@ -30,8 +30,8 @@ const Nav = () => {
         <Image
           src={Logo}
           alt="Logo"
-          width={30}
-          height={30}
+          width={60}
+          height={60}
           className="object-contain"
         />
         <p className="logo_text">AI Prompts</p>
