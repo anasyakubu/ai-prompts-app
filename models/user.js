@@ -1,7 +1,7 @@
 import { Schema, model, models } from "mongoose";
 import { unique } from "next/dist/build/utils";
 
-const UserSchema = newSchema({
+const UserSchema = new Schema({
   email: {
     type: String,
     unique: [true, "Email Already Exist!"],
