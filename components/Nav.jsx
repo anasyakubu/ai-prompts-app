@@ -4,10 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
-// import Logo from "../public/assets/images/ai-logo.svg";
-// import Profile from "../public/assets/images/user-1.jpg";
-// import { set } from "mongoose";
-// import Provider from "./Provider";
+import Logo from "../public/assets/images/ai-logo.svg";
 
 const Nav = () => {
   const { data: session } = useSession();
@@ -26,13 +23,13 @@ const Nav = () => {
     <nav className="flex-between w-full mb-16 pt-3">
       <Link href="/" className="flex gap-2 flex-center">
         <Image
-          src="/assets/images/logo.svg"
+          src={Logo}
           alt="logo"
-          width={30}
+          width={90}
           height={30}
           className="object-contain"
         />
-        <p className="logo_text">Promptopia</p>
+        <p className="logo_text">AI prompts</p>
       </Link>
 
       {/* Desktop Navigation */}
