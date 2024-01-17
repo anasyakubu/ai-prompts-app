@@ -4,9 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
-import Logo from "../public/assets/images/ai-logo.svg";
-import Profile from "../public/assets/images/user-1.jpg";
-import { signIn, signOut, useSession, getProviders } from "next-auth/react";
+// import Logo from "../public/assets/images/ai-logo.svg";
+// import Profile from "../public/assets/images/user-1.jpg";
 // import { set } from "mongoose";
 // import Provider from "./Provider";
 
