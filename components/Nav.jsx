@@ -6,84 +6,90 @@ import { useEffect, useState } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 import Logo from "../public/assets/images/ai-logo.svg";
 import Profile from "../public/assets/images/user-1.jpg";
+import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 // import { set } from "mongoose";
 // import Provider from "./Provider";
 
 const Nav = () => {
-  // const isUserLoggedIn = true;
   const { data: session } = useSession();
+
   const [providers, setProviders] = useState(null);
   const [toggleDropdown, setToggleDropdown] = useState(false);
 
   useEffect(() => {
-    const setUpProviders = async () => {
-      const response = await getProviders();
-
-      setProviders(response);
-    };
-    setUpProviders();
+    (async () => {
+      const res = await getProviders();
+      setProviders(res);
+    })();
   }, []);
 
   return (
     <nav className="flex-between w-full mb-16 pt-3">
       <Link href="/" className="flex gap-2 flex-center">
         <Image
-          src={Logo}
-          alt="Logo"
-          width={60}
-          height={60}
+          src="/assets/images/logo.svg"
+          alt="logo"
+          width={30}
+          height={30}
           className="object-contain"
         />
-        <p className="logo_text">AI Prompts</p>
+        <p className="logo_text">Promptopia</p>
       </Link>
-      {/* DESKTOP NAV */}
+
+      {/* Desktop Navigation */}
       <div className="sm:flex hidden">
         {session?.user ? (
           <div className="flex gap-3 md:gap-5">
-            <Link href="create-prompt" className="black_btn">
-              Create Post{" "}
+            <Link href="/create-prompt" className="black_btn">
+              Create Post
             </Link>
+
             <button type="button" onClick={signOut} className="outline_btn">
               Sign Out
             </button>
+
             <Link href="/profile">
               <Image
-                src={Profile}
+                src={session?.user.image}
                 width={37}
                 height={37}
                 className="rounded-full"
-                alt="Profile"
+                alt="profile"
               />
             </Link>
           </div>
         ) : (
           <>
             {providers &&
-              Object.values(providers).map((Provider) => (
+              Object.values(providers).map((provider) => (
                 <button
                   type="button"
-                  key={Provider.name}
-                  onClick={() => signIn(provider.id)}
+                  key={provider.name}
+                  onClick={() => {
+                    signIn(provider.id);
+                  }}
                   className="black_btn"
                 >
-                  Sign In
+                  Sign in
                 </button>
               ))}
           </>
         )}
       </div>
-      {/* MOBILE NAV */}
-      <div className="sm:hidden flex relative ">
+
+      {/* Mobile Navigation */}
+      <div className="sm:hidden flex relative">
         {session?.user ? (
           <div className="flex">
             <Image
-              src={Logo}
+              src={session?.user.image}
               width={37}
               height={37}
               className="rounded-full"
-              alt="Profile"
-              onClick={() => setToggleDropdown((prev) => !prev)}
+              alt="profile"
+              onClick={() => setToggleDropdown(!toggleDropdown)}
             />
+
             {toggleDropdown && (
               <div className="dropdown">
                 <Link
@@ -94,11 +100,11 @@ const Nav = () => {
                   My Profile
                 </Link>
                 <Link
-                  href="/create-prompts"
+                  href="/create-prompt"
                   className="dropdown_link"
                   onClick={() => setToggleDropdown(false)}
                 >
-                  Create Prompts
+                  Create Prompt
                 </Link>
                 <button
                   type="button"
@@ -116,14 +122,16 @@ const Nav = () => {
         ) : (
           <>
             {providers &&
-              Object.values(providers).map((Provider) => (
+              Object.values(providers).map((provider) => (
                 <button
                   type="button"
-                  key={Provider.name}
-                  onClick={() => signIn(provider.id)}
+                  key={provider.name}
+                  onClick={() => {
+                    signIn(provider.id);
+                  }}
                   className="black_btn"
                 >
-                  Sign In
+                  Sign in
                 </button>
               ))}
           </>
