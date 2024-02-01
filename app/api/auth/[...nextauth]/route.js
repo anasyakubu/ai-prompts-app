@@ -7,6 +7,19 @@ import { connectToDB } from "@utils/database";
 const handler = NextAuth({
   providers: [
     GoogleProvider({
+      profile(profile) {
+        console.log("Profile Google: ", profile);
+
+        // let userRole = "Google User";
+        // // if (profile?.email == "yakubuanas04@gmail.com") {
+        // //   userRole = "admin";
+        // // }
+        return {
+          ...profile,
+          id: profile.sub,
+          role: userRole,
+        };
+      },
       clientId: process.env.GOOGLE_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
