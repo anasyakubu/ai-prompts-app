@@ -1,4 +1,5 @@
-import "@/styles/globals.css";
+// import "@/styles/globals.css";
+import "../styles/globals.css";
 import Nav from "@components/Nav";
 import { ClerkProvider } from "@clerk/nextjs";
 
