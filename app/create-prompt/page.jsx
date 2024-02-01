@@ -1,6 +1,4 @@
 "use client";
-"use client";
-import React, { useState, useEffect } from "react";
 import {
   collection,
   addDoc,
@@ -30,18 +28,19 @@ const CreatePrompt = () => {
 
     alert(post.prompt);
     alert(post.tag);
+
     try {
-      const addItem = async (e) => {
-        e.preventDefault();
-        if (newItems.name !== "" && newItems.price !== "") {
-          //setItems([...items, newItems]);
-          await addDoc(collection(db, "items"), {
-            name: newItems.name.trim(),
-            price: newItems.price,
-          });
-          setNewItems({ name: "", price: "" });
-        }
-      };
+      // const addItem = async (e) => {
+      //   e.preventDefault();
+      if (post.prompt !== "" && post.tag !== "") {
+        //setItems([...items, newItems]);
+        await addDoc(collection(db, "prompts"), {
+          prompt: post.prompt,
+          tag: post.tag,
+        });
+        // setNewItems({ name: "", price: "" });
+      }
+      // };
 
       // if (response.ok) {
       //   router.push("/");
