@@ -1,9 +1,20 @@
 "use client";
-
+"use client";
+import React, { useState, useEffect } from "react";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  querySnapshot,
+  query,
+  onSnapshot,
+  doc,
+  deleteDoc,
+} from "firebase/firestore";
+import { db } from "@app/firebase/firestore";
 import { useState } from "react";
 // import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-
 import Form from "../../components/Form";
 
 const CreatePrompt = () => {
@@ -17,19 +28,24 @@ const CreatePrompt = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
+    alert(post.prompt);
+    alert(post.tag);
     try {
-      const response = await fetch("/api/prompt/new", {
-        method: "POST",
-        body: JSON.stringify({
-          prompt: post.prompt,
-          userId: session?.user.id,
-          tag: post.tag,
-        }),
-      });
+      const addItem = async (e) => {
+        e.preventDefault();
+        if (newItems.name !== "" && newItems.price !== "") {
+          //setItems([...items, newItems]);
+          await addDoc(collection(db, "items"), {
+            name: newItems.name.trim(),
+            price: newItems.price,
+          });
+          setNewItems({ name: "", price: "" });
+        }
+      };
 
-      if (response.ok) {
-        router.push("/");
-      }
+      // if (response.ok) {
+      //   router.push("/");
+      // }
     } catch (error) {
       console.log(error);
     } finally {
