@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "../public/assets/images/ai-logo.svg";
+import User from "../public/assets/images/user-1.jpg";
 
 const Nav = () => {
   return (
@@ -26,7 +27,7 @@ const Nav = () => {
           </Link>
           <Link href="/profile">
             <Image
-              src={Logo}
+              src={User}
               width={37}
               height={37}
               className="rounded-full"
@@ -43,7 +44,7 @@ const Nav = () => {
       <div className="sm:hidden flex relative">
         <div className="flex">
           <Image
-            src={Logo}
+            src={User}
             width={37}
             height={37}
             className="rounded-full"
