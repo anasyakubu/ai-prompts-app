@@ -1,9 +1,9 @@
 "use client";
-
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "../public/assets/images/ai-logo.svg";
 import User from "../public/assets/images/user-1.jpg";
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 const Nav = () => {
   return (
@@ -25,32 +25,46 @@ const Nav = () => {
           <Link href="/create-prompt" className="black_btn">
             Create Post
           </Link>
-          <Link href="/profile">
+          <SignedOut>
+            <Link href="sign-in" className="black_btn">
+              Sign in
+            </Link>
+          </SignedOut>
+          <SignedIn>
+            {" "}
+            <UserButton afterSignOutUrl="/" />
+          </SignedIn>
+          <SignedOut>
+            <Link href="/profile">
+              <Image
+                src={User}
+                width={37}
+                height={37}
+                className="rounded-full"
+                alt="profile"
+              />
+            </Link>
+          </SignedOut>
+        </div>
+      </div>
+
+      {/* Mobile Navigation */}
+      <div className="sm:hidden flex relative">
+        <div className="flex">
+          <SignedOut>
             <Image
               src={User}
               width={37}
               height={37}
               className="rounded-full"
               alt="profile"
+              onClick={() => setToggleDropdown(!toggleDropdown)}
             />
-          </Link>
-        </div>
-        <button type="button" className="black_btn" style={{ display: "none" }}>
-          Sign in
-        </button>
-      </div>
-
-      {/* Mobile Navigation */}
-      <div className="sm:hidden flex relative">
-        <div className="flex">
-          <Image
-            src={User}
-            width={37}
-            height={37}
-            className="rounded-full"
-            alt="profile"
-            onClick={() => setToggleDropdown(!toggleDropdown)}
-          />
+          </SignedOut>
+          <SignedIn>
+            {" "}
+            <UserButton afterSignOutUrl="/" />
+          </SignedIn>
           <div className="dropdown">
             <Link
               href="/create-prompt"
@@ -59,28 +73,23 @@ const Nav = () => {
             >
               Create Prompt
             </Link>
-            {/* <button
-              type="button"
-              onClick={() => {
-                setToggleDropdown(false);
-                signOut();
-              }}
-              className="mt-5 w-full black_btn"
-            >
-              Sign Out
-            </button> */}
+            <signOut>
+              <Link
+                href="sign-in"
+                onClick={() => {
+                  setToggleDropdown(false);
+                }}
+                className="mt-5 w-full black_btn"
+              >
+                Sign In
+              </Link>
+            </signOut>
           </div>
         </div>
 
-        <button
-          type="button"
-          onClick={() => {
-            signIn(provider.id);
-          }}
-          className="black_btn"
-        >
+        <Link href="/" className="black_btn ml-5">
           +
-        </button>
+        </Link>
       </div>
     </nav>
   );
