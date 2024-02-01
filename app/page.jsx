@@ -5,7 +5,7 @@ import Nav from "../components/Nav";
 const Home = () => {
   return (
     <>
-      <Nav />
+      {/* <Nav /> */}
       <section className="w-full flex-center flex-col">
         <h1 className="head_text text-center">
           Discover & Share
