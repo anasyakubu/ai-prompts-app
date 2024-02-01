@@ -9,7 +9,7 @@ import {
   doc,
   deleteDoc,
 } from "firebase/firestore";
-import { db } from "@app/firebase/firestore";
+import { db } from "../firebase/firestore";
 import { useState } from "react";
 // import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
