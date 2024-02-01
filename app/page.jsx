@@ -1,6 +1,6 @@
 import React from "react";
-import Feed from "@components/Feed";
-import Nav from "@components/Nav";
+import Feed from "../components/Feed";
+import Nav from "../components/Nav";
 
 const Home = () => {
   return (
@@ -18,10 +18,8 @@ const Home = () => {
           An Open-source AI Prompting tool for modern world to discover, create{" "}
           and sharing creative prompts{" "}
         </p>
-
         <Feed />
       </section>
-  
     </>
   );
 };
