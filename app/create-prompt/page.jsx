@@ -10,14 +10,20 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 import { db } from "../firebase/firestore";
+import { useUser } from "@clerk/nextjs";
 import { useState } from "react";
-// import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Form from "../../components/Form";
 
 const CreatePrompt = () => {
+  const { isLoaded, isSignedIn, user } = useUser();
+  console.log(user);
+
+  if (!isLoaded || !isSignedIn) {
+    return null;
+  }
+
   const router = useRouter();
-  // const { data: session } = useSession();
 
   const [submitting, setIsSubmitting] = useState(false);
   const [post, setPost] = useState({ prompt: "", tag: "" });
@@ -26,25 +32,28 @@ const CreatePrompt = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    alert(post.prompt);
-    alert(post.tag);
+    // alert(post.prompt);
+    // alert(post.tag);
+    // alert(user.imageUrl);
 
     try {
       // const addItem = async (e) => {
       //   e.preventDefault();
       if (post.prompt !== "" && post.tag !== "") {
         //setItems([...items, newItems]);
-        await addDoc(collection(db, "prompts"), {
+        addDoc(collection(db, "prompts"), {
           prompt: post.prompt,
           tag: post.tag,
+          creatorID: user.id,
+          creatorName: user.fullName,
+          creatorEmail: user.emailAddresses[0].emailAddress,
+          creatorPhotoUrl: user.imageUrl,
         });
         // setNewItems({ name: "", price: "" });
+        alert("Successful");
+        router.push("/");
       }
       // };
-
-      // if (response.ok) {
-      //   router.push("/");
-      // }
     } catch (error) {
       console.log(error);
     } finally {
