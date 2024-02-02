@@ -1,8 +1,11 @@
 import React from "react";
 import Feed from "../components/Feed";
 import Nav from "../components/Nav";
+import { auth, currentUser } from "@clerk/nextjs";
 
 const Home = () => {
+  const { userId } = auth();
+
   return (
     <>
       {/* <Nav /> */}
