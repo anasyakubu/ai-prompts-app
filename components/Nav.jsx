@@ -54,7 +54,7 @@ const Nav = () => {
             >
               Create Prompt
             </Link>
-            <signOut>
+            <SignedOut>
               <Link
                 href="sign-in"
                 onClick={() => {
@@ -64,7 +64,7 @@ const Nav = () => {
               >
                 Sign In
               </Link>
-            </signOut>
+            </SignedOut>
           </div>
         </div>
 
