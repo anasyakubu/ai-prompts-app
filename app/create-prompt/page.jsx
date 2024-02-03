@@ -46,7 +46,7 @@ const CreatePrompt = () => {
           tag: post.tag,
           creatorID: user.id,
           creatorName: user.fullName,
-          creatorEmail: user.emailAddresses[0].emailAddress,
+          creatorUsername: user.username,
           creatorPhotoUrl: user.imageUrl,
         });
         // setNewItems({ name: "", price: "" });

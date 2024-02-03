@@ -45,27 +45,28 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
         <div className="prompt_card">
           <div className="flex justify-between items-start gap-5">
             <div className="flex-1 flex justify-start items-center gap-3 cursor-pointer">
+              {/* {prompt.imageUrl && ( */}
               <Image
-                src=""
+                src={prompt.creatorPhotoUrl}
                 alt="user_image"
                 width={40}
                 height={40}
                 className="rounded-full object-contain"
               />
-
+              {/* )} */}
               <div className="flex flex-col">
                 <h3 className="font-satoshi font-semibold text-gray-900">
                   {prompt.creatorName}
                 </h3>
                 <p className="font-inter text-sm text-gray-500">
-                  {prompt.creatorEmail}
+                  {prompt.creatorUsername}
                 </p>
               </div>
             </div>
 
             <div className="copy_btn">
               <Image
-                src="/assets/icons/tick.svg"
+                src="/assets/icons/copy.svg"
                 alt="tick_icon"
                 width={12}
                 height={12}

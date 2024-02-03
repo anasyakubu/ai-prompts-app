@@ -36,33 +36,12 @@ const Nav = () => {
             {" "}
             <UserButton afterSignOutUrl="/" />
           </SignedIn>
-          <SignedOut>
-            <Link href="/profile">
-              <Image
-                src={User}
-                width={37}
-                height={37}
-                className="rounded-full"
-                alt="profile"
-              />
-            </Link>
-          </SignedOut>
         </div>
       </div>
 
       {/* Mobile Navigation */}
       <div className="sm:hidden flex relative">
         <div className="flex">
-          <SignedOut>
-            <Image
-              src={User}
-              width={37}
-              height={37}
-              className="rounded-full"
-              alt="profile"
-              onClick={() => setToggleDropdown(!toggleDropdown)}
-            />
-          </SignedOut>
           <SignedIn>
             {" "}
             <UserButton afterSignOutUrl="/" />

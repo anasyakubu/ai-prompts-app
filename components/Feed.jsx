@@ -12,21 +12,21 @@ const Feeds = () => {
   const [searchTimeout, setSearchTimeout] = useState(null);
   const [searchedResults, setSearchedResults] = useState([]);
 
-  const fetchPosts = async () => {
-    const q = query(collection(db, "prompts"));
-    const querySnapshot = await getDocs(q);
+  // const fetchPosts = async () => {
+  //   const q = query(collection(db, "prompts"));
+  //   const querySnapshot = await getDocs(q);
 
-    const data = querySnapshot.docs.map((doc) => ({
-      ...doc.data(),
-      _id: doc.id,
-    }));
+  //   const data = querySnapshot.docs.map((doc) => ({
+  //     ...doc.data(),
+  //     _id: doc.id,
+  //   }));
 
-    setAllPosts(data);
-  };
+  //   setAllPosts(data);
+  // };
 
-  useEffect(() => {
-    fetchPosts();
-  }, []);
+  // useEffect(() => {
+  //   fetchPosts();
+  // }, []);
 
   const filterPrompts = (searchText) => {
     const regex = new RegExp(searchText, "i");
